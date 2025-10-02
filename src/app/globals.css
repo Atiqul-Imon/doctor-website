@@ -1,26 +1,296 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1f2937;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0ea5e9;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0284c7;
+}
+
+/* Smooth transitions */
+* {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Focus styles */
+*:focus {
+  outline: 2px solid #0ea5e9;
+  outline-offset: 2px;
+}
+
+/* Selection styles */
+::selection {
+  background: #0ea5e9;
+  color: white;
+}
+
+/* Glassmorphism utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.95);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.hero-glass-card {
+  background: rgba(0, 0, 0, 0.4);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.glass-hover {
+  transition: all 0.3s ease;
+}
+
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(25px);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Medical-themed gradient backgrounds */
+.gradient-bg {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+}
+
+.gradient-bg-2 {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.gradient-bg-3 {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+}
+
+.gradient-bg-4 {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+}
+
+/* Dark teal-to-blue hero background */
+.hero-bg {
+  background: linear-gradient(135deg, #0f766e 0%, #0d9488 25%, #0891b2 50%, #0284c7 75%, #0369a1 100%);
+  position: relative;
+}
+
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 40%),
+              radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 35%),
+              radial-gradient(circle at 40% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 45%),
+              radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.12) 0%, transparent 30%),
+              radial-gradient(circle at 10% 80%, rgba(255, 255, 255, 0.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Subtle floating animation */
+@keyframes subtleFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.subtle-float {
+  animation: subtleFloat 8s ease-in-out infinite;
+}
+
+/* Gentle pulse effect */
+@keyframes gentlePulse {
+  0%, 100% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.2); }
+  50% { box-shadow: 0 0 25px rgba(59, 130, 246, 0.3); }
+}
+
+.gentle-pulse {
+  animation: gentlePulse 3s ease-in-out infinite;
+}
+
+/* Responsive utilities */
+@media (max-width: 640px) {
+  .hero-glass-card {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(15px);
+  }
+  
+  .glass-card {
+    background: rgba(255, 255, 255, 0.9);
+  }
+  
+  /* Mobile hero section spacing */
+  .hero-section {
+    padding-top: 6rem !important; /* 96px for mobile */
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  /* Tablet hero section spacing */
+  .hero-section {
+    padding-top: 7rem !important; /* 112px for tablet */
+  }
+}
+
+@media (min-width: 1025px) {
+  /* Desktop hero section spacing */
+  .hero-section {
+    padding-top: 1rem !important; /* 16px for desktop */
+  }
+}
+
+/* Touch-friendly interactions */
+@media (hover: none) and (pointer: coarse) {
+  .glass-hover:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.85);
+  }
+  
+  .gentle-pulse {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .hero-glass-card {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .glass-card {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .gentle-pulse {
+    animation: none;
+  }
+  
+  .subtle-float {
+    animation: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .glass-card,
+  .hero-glass-card {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+  
+  .hero-bg {
+    background: white !important;
+  }
+}
+
+/* WhatsApp Widget Styles */
+@keyframes whatsappPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+.whatsapp-pulse {
+  animation: whatsappPulse 2s infinite;
+}
+
+/* WhatsApp widget responsive adjustments */
+@media (max-width: 640px) {
+  .whatsapp-widget {
+    right: 1rem;
+    bottom: 1rem;
+  }
+  
+  .whatsapp-popup {
+    right: 1rem;
+    bottom: 5rem;
+    width: calc(100vw - 2rem);
+    max-width: 20rem;
+  }
+}
+
+/* WhatsApp widget hover effects */
+.whatsapp-button:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* WhatsApp widget backdrop blur */
+.whatsapp-backdrop {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
