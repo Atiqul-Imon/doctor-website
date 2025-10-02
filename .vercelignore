@@ -9,6 +9,9 @@ yarn-error.log*
 out
 dist
 
+# Scripts directory (not needed for deployment)
+scripts/
+
 # Environment variables
 .env
 .env.local

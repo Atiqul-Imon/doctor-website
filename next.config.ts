@@ -27,6 +27,13 @@ const nextConfig: NextConfig = {
   },
   // Vercel optimizations
   output: 'standalone',
+  // Exclude scripts directory from build
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.externals = [...(config.externals || []), 'dotenv'];
+    }
+    return config;
+  },
   // Headers for better security and performance
   async headers() {
     return [
