@@ -82,9 +82,12 @@ interface BlogPostPageProps {
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  // In a real app, you would fetch the blog post from your database
+  // In a real app, you would fetch the blog post from your database using the slug
   // For now, we'll use the sample data
   const blogPost = sampleBlogPost;
+  
+  // TODO: Implement actual blog post fetching based on slug
+  console.log('Blog slug:', slug);
 
   if (!blogPost) {
     notFound();

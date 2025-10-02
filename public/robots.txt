@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Disallow admin and API routes
+Disallow: /api/
+Disallow: /admin/
+
+# Sitemap
+Sitemap: https://doctor-website.vercel.app/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1
